@@ -14,7 +14,7 @@ let list1 : Array<string> = ['abc','cde'];
 
 // string
 let str : string = 'abc';
-let str1: string = "ABC";
+let str1: string = "ABC" // works with double and single quotes
 
 // tuple
 let tup:[string,number] = ['abc',1];

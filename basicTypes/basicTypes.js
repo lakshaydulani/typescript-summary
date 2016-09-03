@@ -10,7 +10,7 @@ var list = [1, 2, 3];
 var list1 = ['abc', 'cde'];
 // string
 var str = 'abc';
-var str1 = "ABC";
+var str1 = "ABC"; // works with double and single quotes
 // tuple
 var tup = ['abc', 1];
 tup = ['1', 1];
