@@ -29,19 +29,28 @@ So advantages of TS:
 ### Basic Types
 TS has these eight basic data types - 
 
- 1. Number - ```public amount : number = 123;```
+ 1- Number - ```public amount : number = 123;```
 
- 2. String - ```let color: string = "blue";```
+2- String - ```let color: string = "blue";```
+
+Strings also support template syntax - 
+```
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ fullName }.
+```
+
+ 3- Boolean - ```let isDone: boolean = false;```
+
+ 4- Array - 
  
- 3. Boolean - ```let isDone: boolean = false;```
+ ``` let list: number[] = [1, 2, 3];```
 
- 4. Array - 
- 
- ```let list: number[] = [1, 2, 3];
- // or you can define like this (using Array keyword)
-let list: Array<number> = [1, 2, 3];```
+```
+// Array can be defined like this
+let list: Array<number> = [1, 2, 3];
+```
 
-5. Tuple - *Basically an array which can have different data types*
+5- Tuple - *Basically an array which can have different data types*
 ``` 
 // Declare a tuple type
 let x: [string, number];
@@ -50,16 +59,16 @@ x = ["hello", 10]; // OK
 // Initialize it incorrectly
 x = [10, "hello"]; // Error 
 ```
-6. Enum - *A way to assign numeric values to a set of values*
+6- Enum - *A way to assign numeric values to a set of values*
 ``` enum Status { Processing, Accepted, Rejected} ```
 
-7. Any - *This type works exactly like the normal variables in JS. TS compiler doesnt perform its type checking on these ones.*
+7- Any - *This type works exactly like the normal variables in JS. TS compiler doesnt perform its type checking on these ones.*
 
 ```
 let notSure: any = 4;
 notSure = "maybe a string instead";
 ```
-8. Void - 
+8- Void - 
 For functions, it tells that the function doesnt return anything.
 ```
 function warnUser(): void {
@@ -85,7 +94,7 @@ Interfaces are like a contract. A class/function which implements an interface s
 ``` 
 interface  IFlyable{
     heightLimit : number;
-    numberEngines? : number;
+    numberEngines? : number; //optional property
     fly() : void;
 }
 
@@ -117,7 +126,7 @@ Search = function(a,b):boolean { // no need to reiterate that a and b are string
 }
 ```
 
-### Using interface to restrict input parameter to a function
+### Using Interface to restrict input parameter to a function
 
 ```
 interface Square{
@@ -135,11 +144,106 @@ function calculateArea(sq : Square){
 
 
 calculateArea({side:20}); // valid
-calculateArea({side:20, color:'red'}); // valid
-//calculateArea({side:'20'}); // error - This is one common problem when working on JS
+calculateArea({side:'20'}); // error - This is one common problem when working on JS
+
+calculateArea({side:1, color: 'red' }) // error - This is because of extra property
+// TS treats this as error
+
+// If your object will have extra properties, then pass like this - 
+calculateArea({ side: 1, color: 'red' } as Square);
+
+
 ```
 
 > **Note:**
 
 > - Properties suffixed with ? are optional to implement in the class.
 > - Interface can inherit from other Interfaces, Classes
+
+
+----------
+
+
+----------
+
+
+Classes
+-------------
+
+TS classes have public, private and protected members. Members are public by default.
+Classes can also be defined as Abstract classes and they can have Static properties.
+Derived classes need to call the ```super``` function to execute the constructor of the base class. 
+
+TS Class Kitchensink code - 
+
+```
+// Put all inherent properties in the abstract clss
+ 
+abstract class Human{
+
+static population : number; // make this property static to count the population. The property population doesnt belong to the instance, it rather belongs to the class itself   
+
+name: string; // default public
+gender : number;
+
+walk() : void{
+console.log("walking"); // this function can be put into abstract clss because every human walks in the same way
+}
+
+abstract doHobbies() : void; // every person has their own hobby - so its better to make it abstract and not put any implementation fr ths function   
+
+private sexualOrientation : boolean; // private because its private to the person and it should not be accessible outside
+
+protected DNA : any; // protected because its private to the person itself and available to child classes
+} 
+
+
+class Employee implements Human{
+
+constructor(company : string, private salary: number){
+// the parameters to the constructor - company and salary - become the members to thsce class Employee
+}
+
+doHobbies(){
+console.log('painting'); // had to implement this function
+}
+
+}
+
+
+``` 
+
+----------
+
+
+----------
+
+
+Functions
+-------------
+
+TS functions check the input parameters and give error on compile time if there is any mismatch.
+
+There are also Default and Optional parameters for functions.
+
+```
+function buildName(firstName: string, lastName = "Smith", middleName? : string) {
+}
+
+```
+
+
+###Rest Parameters
+
+Rest parameters are treated as a boundless number of optional parameters. When passing arguments for a rest parameter, you can use as many as you want; you can even pass none. The compiler will build an array of the arguments passed in with the name given after the ellipsis (...), allowing you to use it in your function.
+
+```
+
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ");
+}
+
+let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
+
+```
+
