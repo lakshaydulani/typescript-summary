@@ -80,6 +80,24 @@ For variables, a void type variable can only be null or undefined.
 
 ``` let unusable: void = undefined; ```
 
+###Union of Types
+
+There are situations in which a function can accept a parameter which can be of multiple type of data type.
+
+Using Union, you can set a restriction for a function to accept a parameter of given data types.
+
+```
+function alertGender(gender: boolean | string){
+ if (typeof gender === "boolean") {
+   alert("You are " + (gender ? "male" : "female" ));
+    }
+    if (typeof gender === "string") {
+   alert("You are " + gender);
+    }
+}
+// the parameter gender could have been set as any. But that leaves scope for error
+```
+
 ----------
 
 
