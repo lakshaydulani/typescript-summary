@@ -82,9 +82,8 @@ For variables, a void type variable can only be null or undefined.
 
 ###Union of Types
 
-There are situations in which a function can accept a parameter which can be of multiple type of data type.
-
-Using Union, you can set a restriction for a function to accept a parameter of given data types.
+There are situations in which a function can accept a parameter which can be of different type of data type.
+Using Union, you can set a restriction for a function to accept a parameter of given range of data types.
 
 ```
 function alertGender(gender: boolean | string){
@@ -219,7 +218,7 @@ protected DNA : any; // protected because its private to the person itself and a
 class Employee implements Human{
 
 constructor(company : string, private salary: number){
-// the parameters to the constructor - company and salary - become the members to thsce class Employee
+// the parameters to the constructor - company and salary - become the members to the class Employee
 }
 
 doHobbies(){
@@ -229,7 +228,21 @@ console.log('painting'); // had to implement this function
 }
 
 
+
+
 ``` 
+
+### Interfaces VS Abstract class
+It is one of the most discussed topic for Java/C# developers.
+
+As a thumb rule, properties/functions which are inherent part of the entity should be kept in the abstract class. e.g in the above example, a human will inherently have properties like DNA, etc. So we must put them in an abstract class.
+
+Whereas, Interfaces are used to model an ability. Lets say, there is a class Employee. 
+Now normal employees cannot hire another employees; that is the work of HR dept.
+
+The HR dept employees get ability functions like hire(), callForInterview(),etc
+
+These functions should be modeled in an Interface which can be called (lets say) 'IHireable'
 
 ----------
 
@@ -265,3 +278,78 @@ let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
 
 ```
 
+
+
+# Namespaces
+
+Namespaces are used to avoid naming collisions in the global scope. There can be situations where your code uses libraries LibraryX and LibraryY. It is possible that these libraries have classes with same name. It can make the code really messy.
+
+Thats why its a good practice to structurize the code using Namespaces.
+
+A Namespace can ```export``` only the properties which are required, and can keep the inner implementations within itself.
+
+A namespace can be splitted across different files.
+
+```
+namespace Encryption {
+
+const bit_mode = 64; 
+
+    export class AES {
+        encrypt(s: string) {
+            return s;
+        }
+        decrypt(s: string) {
+            return s;
+        }
+    }
+
+    export class DES {
+      encrypt(s: string) {
+            return s;
+        }
+        decrypt(s: string) {
+            return s;
+        }
+    }
+}
+
+```
+
+
+#Decorators
+
+A Decorator is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter.
+
+Decorators can be used to do any additional work when a class is initialised, function is run, etc. 
+
+It can be used for logging, editing or restricting the flow at runtime.
+
+DECORATORS APPLY ON RUNTIME!
+
+Syntax:
+@expression
+
+// where expression should be a function's name 
+
+Decorators are of two types:
+
+#### Class Decorators
+
+
+A class decorator gets applied to the constructor and can be used to observe, modify, or replace a class definition.
+
+
+e.g. 
+
+```
+@logger
+class Greeter {
+   
+}
+
+
+function logger(constructor: Function) {
+   log();
+}
+```
