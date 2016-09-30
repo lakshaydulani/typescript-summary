@@ -317,39 +317,3 @@ const bit_mode = 64;
 ```
 
 
-#Decorators
-
-A Decorator is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter.
-
-Decorators can be used to do any additional work when a class is initialised, function is run, etc. 
-
-It can be used for logging, editing or restricting the flow at runtime.
-
-DECORATORS APPLY ON RUNTIME!
-
-Syntax:
-@expression
-
-// where expression should be a function's name 
-
-Decorators are of two types:
-
-#### Class Decorators
-
-
-A class decorator gets applied to the constructor and can be used to observe, modify, or replace a class definition.
-
-
-e.g. 
-
-```
-@logger
-class Greeter {
-   
-}
-
-
-function logger(constructor: Function) {
-   log();
-}
-```
