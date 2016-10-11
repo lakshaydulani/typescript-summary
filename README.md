@@ -29,8 +29,6 @@ So advantages of TS:
 ### Basic Types
 TS has these eight basic data types - 
 
-<<<<<<< Updated upstream
-=======
 ![Types](https://s18.postimg.org/wl3etj589/tstypes.png)
 
  1- **Number** - ```public amount : number = 123;```
