@@ -94,7 +94,8 @@ function alertGender(gender: boolean | string){
    alert("You are " + gender);
     }
 }
-// the parameter gender could have been set as any. But that leaves scope for error
+// the parameter gender could have been set as any. But that leaves scope for error, as in you wont be able to get the strict type checking of TS
+
 ```
 
 ----------
@@ -337,7 +338,7 @@ function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-//
+// the function sealed will run when the class is declared, and seal the class' constructor and prototype
 
 ```
 
