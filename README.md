@@ -195,41 +195,47 @@ TS Class Kitchensink code -
 
 ```
 // Put all inherent properties in the abstract clss
- 
+
 abstract class Human{
 
-static population : number; // make this property static to count the population. The property population doesnt belong to the instance, it rather belongs to the class itself   
+    static population : number; // make this property static to count the population. The property population doesnt belong to the instance, it rather belongs to the class itself
 
-name: string; // default public
-gender : number;
+    name: string; // default public
 
-walk() : void{
-console.log("walking"); // this function can be put into abstract clss because every human walks in the same way
+    gender : number;
+
+    walk() : void{
+        console.log("walking"); // this function can be put into abstract clss because every human walks in the same way
+    }
+
+    abstract doHobbies() : void; // every person has their own hobby - so its better to make it abstract and not put any implementation fr ths function
+
+    private sexualOrientation : boolean; // private because its private to the person and it should not be accessible outside
+
+    protected DNA : any; // protected because its private to the person itself and available to child classes
+
+    constructor(){}
 }
 
-abstract doHobbies() : void; // every person has their own hobby - so its better to make it abstract and not put any implementation fr ths function   
+class Employee extends Human{
 
-private sexualOrientation : boolean; // private because its private to the person and it should not be accessible outside
+    constructor(company : string){
 
-protected DNA : any; // protected because its private to the person itself and available to child classes
-} 
+// the parameters to the constructor - company - becomes the member to the class Employee
+        super(); // every derived class needs to make a call to base class
+        Human.population++;
+    }
 
-
-class Employee implements Human{
-
-constructor(company : string, private salary: number){
-// the parameters to the constructor - company and salary - become the members to the class Employee
+    doHobbies(){
+        console.log('painting'); // had to implement this function
+    }
 }
 
-doHobbies(){
-console.log('painting'); // had to implement this function
-}
-
-}
-
-
-
-
+ // var  aHuman = new Human(); //  cannot instantiate an abstract class
+Human.population = 0;
+var anEmployee = new Employee('Ernst & Young');
+var anEmployee1 = new Employee('EY');
+console.log(Human.population);
 ``` 
 
 ### Interfaces VS Abstract class
@@ -316,4 +322,23 @@ const bit_mode = 64;
 
 ```
 
+# Decorators
 
+Decorators are a way to perform extra activities like logging, manipulating , restricting whenever a class is declared, or a function is run
+
+For example -
+
+```
+@sealed
+class ABC {}
+
+function sealed(constructor: Function) {
+    Object.seal(constructor);
+    Object.seal(constructor.prototype);
+}
+
+//
+
+```
+
+More on Decorators coming soon....
