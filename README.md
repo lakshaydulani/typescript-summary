@@ -29,9 +29,11 @@ So advantages of TS:
 ### Basic Types
 TS has these eight basic data types - 
 
- 1- Number - ```public amount : number = 123;```
 
-2- String - ```let color: string = "blue";```
+
+ 1- **Number** - ```public amount : number = 123;```
+
+2- **String** - ```let color: string = "blue";```
 
 Strings also support template syntax - 
 ```
@@ -39,9 +41,9 @@ let age: number = 37;
 let sentence: string = `Hello, my name is ${ fullName }.
 ```
 
- 3- Boolean - ```let isDone: boolean = false;```
+ 3- **Boolean** - ```let isDone: boolean = false;```
 
- 4- Array - 
+ 4- **Array** - 
  
  ``` let list: number[] = [1, 2, 3];```
 
@@ -50,7 +52,7 @@ let sentence: string = `Hello, my name is ${ fullName }.
 let list: Array<number> = [1, 2, 3];
 ```
 
-5- Tuple - *Basically an array which can have different data types*
+5- **Tuple** - *Basically an array which can have different data types*
 ``` 
 // Declare a tuple type
 let x: [string, number];
@@ -59,16 +61,16 @@ x = ["hello", 10]; // OK
 // Initialize it incorrectly
 x = [10, "hello"]; // Error 
 ```
-6- Enum - *A way to assign numeric values to a set of values*
+6- **Enum** - *A way to assign numeric values to a set of values*
 ``` enum Status { Processing, Accepted, Rejected} ```
 
-7- Any - *This type works exactly like the normal variables in JS. TS compiler doesnt perform its type checking on these ones.*
+7- **Any** - *This type works exactly like the normal variables in JS. TS compiler doesnt perform its type checking on these ones.*
 
 ```
 let notSure: any = 4;
 notSure = "maybe a string instead";
 ```
-8- Void - 
+8- **Void** - 
 For functions, it tells that the function doesnt return anything.
 ```
 function warnUser(): void {
