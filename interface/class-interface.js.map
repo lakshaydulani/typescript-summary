@@ -1,1 +1,1 @@
-{"version":3,"file":"class-interface.js","sourceRoot":"","sources":["class-interface.ts"],"names":["Vehicle","Vehicle.constructor","Vehicle.fly"],"mappings":"AAAA,0FAA0F;AAC1F,iGAAiG;AAOjG;IAAAA;IAIAC,CAACA;IADGD,qBAAGA,GAAHA,cAAaE,CAACA;;IAClBF,cAACA;AAADA,CAACA,AAJD,IAIC;AAGD,6DAA6D"}
+{"version":3,"file":"class-interface.js","sourceRoot":"","sources":["class-interface.ts"],"names":[],"mappings":"AAAA,0FAA0F;AAC1F,iGAAiG;AAOjG;IAAA;IAIA,CAAC;IADG,qBAAG,GAAH,cAAa,CAAC;;IAClB,cAAC;AAAD,CAAC,AAJD,IAIC;AAGD,6DAA6D"}

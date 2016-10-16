@@ -14,20 +14,31 @@ TS does the work of compiling (transpiling) the code and providing a better code
 
 *Writing environment*? Yes TS code will eventually be transpiled to JS when you want to run it on a browser.
 
+
+ Look at the following example:
+
+![Writing environment](http://i.imgur.com/M5LNx8v.png)
+
+The left is the TS code, and the right side is the transpiled JS code.
+
+You will see that we have made an abstract class Encryption and a normal class NormalEncrytion in the example.
+
+There is no difference in the generated JS code for the two classes. You will notice that there is not restriction made for keeping the class abstact in the transpiled JS.
+But the TS compiler will not let you instantiate the abstract class Encryption as abstract classes are meant to be (see the error near the red underline).
+
+So the point I am trying to make is - Many of the features will not be available in the generated JS code; but still the TS compiler will let you *write better and error free code*.
+
 So advantages of TS:
 
   - **Type checking** - Gives you ability to define type for a variable and check for errors
-  - **Syntatic sugar** - Just define a class by using TS' keyword. The compiler will take care of everything. 
+  - **Syntatic sugar** - Just define a class by using TS' keyword. The compiler will take care of everything.
   - **OOPS language goodies** - TS brings the goodness of Interfaces, Abstract class, Generics, etc to JS
- 
- 
-
 
 ----------
 
 
 ### Basic Types
-TS has these eight basic data types - 
+TS has these eight basic data types -
 
 ![Types](https://s18.postimg.org/wl3etj589/tstypes.png)
 
@@ -35,7 +46,7 @@ TS has these eight basic data types -
 
 2- **String** - ```let color: string = "blue";```
 
-Strings also support template syntax - 
+Strings also support template syntax -
 ```
 let age: number = 37;
 let sentence: string = `Hello, my name is ${ fullName }.
@@ -43,8 +54,8 @@ let sentence: string = `Hello, my name is ${ fullName }.
 
  3- **Boolean** - ```let isDone: boolean = false;```
 
- 4- **Array** - 
- 
+ 4- **Array** -
+
  ``` let list: number[] = [1, 2, 3];```
 
 ```
@@ -53,13 +64,13 @@ let list: Array<number> = [1, 2, 3];
 ```
 
 5- **Tuple** - *Basically an array which can have different data types*
-``` 
+```
 // Declare a tuple type
 let x: [string, number];
 // Initialize it
 x = ["hello", 10]; // OK
 // Initialize it incorrectly
-x = [10, "hello"]; // Error 
+x = [10, "hello"]; // Error
 ```
 6- **Enum** - *A way to assign numeric values to a set of values*
 ``` enum Status { Processing, Accepted, Rejected} ```
@@ -70,7 +81,7 @@ x = [10, "hello"]; // Error
 let notSure: any = 4;
 notSure = "maybe a string instead";
 ```
-8- **Void** - 
+8- **Void** -
 For functions, it tells that the function doesnt return anything.
 ```
 function warnUser(): void {
@@ -96,7 +107,9 @@ function alertGender(gender: boolean | string){
    alert("You are " + gender);
     }
 }
-// the parameter gender could have been set as any. But that leaves scope for error, as in you wont be able to get the strict type checking of TS
+// the parameter gender could have been set as any.
+// But that leaves scope for error, as in you wont be able
+// to get the strict type checking of TS
 
 ```
 
@@ -111,7 +124,7 @@ Interfaces
 
 Interfaces are like a contract. A class/function which implements an interface should have the properties defined in the interface.
 
-``` 
+```
 interface  IFlyable{
     heightLimit : number;
     numberEngines? : number; //optional property
@@ -124,7 +137,7 @@ class Vehicle implements IFlyable{
     fly() : void{};
 }
 // Vehicle needs to have properties specified in the IFlyable
-// Compiler will throw an error if the implementing class doesnt have all the properties 
+// Compiler will throw an error if the implementing class doesnt have all the properties
 // Properties suffixed with ? are optional
 ```
 
@@ -157,7 +170,7 @@ interface Square{
 function calculateArea(sq : Square){
    return (side * side);
 
-    // The input parameter sq implements the Interface Square 
+    // The input parameter sq implements the Interface Square
     // This puts a condition that the input parameter
     // needs to have the property side
 }
@@ -169,7 +182,7 @@ calculateArea({side:'20'}); // error - This is one common problem when working o
 calculateArea({side:1, color: 'red' }) // error - This is because of extra property
 // TS treats this as error
 
-// If your object will have extra properties, then pass like this - 
+// If your object will have extra properties, then pass like this -
 calculateArea({ side: 1, color: 'red' } as Square);
 
 
@@ -192,66 +205,83 @@ Classes
 
 TS classes have public, private and protected members. Members are public by default.
 Classes can also be defined as Abstract classes and they can have Static properties.
-Derived classes need to call the ```super``` function to execute the constructor of the base class. 
+Derived classes need to call the ```super``` function to execute the constructor of the base class.
 
-TS Class Kitchensink code - 
+####Key points####
+
+**Abstract classes** - These are meant to be inherited, but cannot be instantiated.
+**Static properties** - These properties describe the class not the instances of it. See the property population in the Class kitchensink code.
+
+
+###TS Class Kitchensink code###
+
+Lets see the example below:
+
+We want to model classes for Employees.
+
+Now every employee will have a gender, name, etc. These properties are bound to be there in every human. **As a thumb rule, keep the inherent properties in the abstract class**
+
+Now properties like Gender, Name are public in nature.
+Properties which are private to oneself like Salary should be kept as private so that they are not accessible publically.
+
+
+
 
 ```
 // Put all inherent properties in the abstract clss
 
-abstract class Human{
+abstract class Employee{
 
-    static population : number; // make this property static to count the population. The property population doesnt belong to the instance, it rather belongs to the class itself
+    static headCount : number; // make this property static to count the population. The property population doesnt belong to the instance, it rather belongs to the class itself
 
-    name: string; // default public
-
+    public name: string; // default public
     gender : number;
 
-    walk() : void{
-        console.log("walking"); // this function can be put into abstract clss because every human walks in the same way
+    putAttendance() : void{
+        console.log("punch in card");
+        // this function can be put into abstract clss because every employee will put attendance
     }
 
-    abstract doHobbies() : void; // every person has their own hobby - so its better to make it abstract and not put any implementation fr ths function
+    abstract work() : void;
+    // every employee has their own role and work - so its better to make it abstract and not put any implementation fr ths function
 
-    private sexualOrientation : boolean; // private because its private to the person and it should not be accessible outside
-
-    protected DNA : any; // protected because its private to the person itself and available to child classes
-
-    constructor(){}
+    private salary : number; // private because its private to the employee and it should not be accessible outside
 }
 
-class Employee extends Human{
+
+class DeveloperEmployee extends Employee{
 
     constructor(company : string){
-
-// the parameters to the constructor - company - becomes the member to the class Employee
-        super(); // every derived class needs to make a call to base class
-        Human.population++;
+        Employee.headCount++;
+        super();
     }
 
-    doHobbies(){
-        console.log('painting'); // had to implement this function
+    work(){
+        console.log('develop IT systems'); // had to implement this function
     }
+
 }
 
- // var  aHuman = new Human(); //  cannot instantiate an abstract class
-Human.population = 0;
-var anEmployee = new Employee('Ernst & Young');
-var anEmployee1 = new Employee('EY');
-console.log(Human.population);
-``` 
+class ManagerEmployee extends Employee{
 
-### Interfaces VS Abstract class
-It is one of the most discussed topic for Java/C# developers.
+    constructor(company : string){
+        Employee.headCount++;
+        super();
+    }
 
-As a thumb rule, properties/functions which are inherent part of the entity should be kept in the abstract class. e.g in the above example, a human will inherently have properties like DNA, etc. So we must put them in an abstract class.
+    work(){
+        console.log('managing other employees'); // had to implement this function
+    }
 
-Whereas, Interfaces are used to model an ability. Lets say, there is a class Employee. 
-Now normal employees cannot hire another employees; that is the work of HR dept.
+}
 
-The HR dept employees get ability functions like hire(), callForInterview(),etc
+Employee.headCount = 0;
+let dev = new DeveloperEmployee('EY');
+let manager = new ManagerEmployee('EY');
 
-These functions should be modeled in an Interface which can be called (lets say) 'IHireable'
+console.log(Employee.headCount);
+```
+
 
 ----------
 
@@ -302,7 +332,7 @@ A namespace can be splitted across different files.
 ```
 namespace Encryption {
 
-const bit_mode = 64; 
+const bit_mode = 64;
 
     export class AES {
         encrypt(s: string) {
@@ -345,3 +375,4 @@ function sealed(constructor: Function) {
 ```
 
 More on Decorators coming soon....
+

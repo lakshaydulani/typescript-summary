@@ -1,1 +1,1 @@
-{"version":3,"file":"basic-interface.js","sourceRoot":"","sources":["basic-interface.ts"],"names":[],"mappings":""}
+{"version":3,"file":"basic-interface.js","sourceRoot":"","sources":["basic-interface.ts"],"names":[],"mappings":"AAAA,yCAAyC;AAQzC,uBAAuB,EAAW;IAC/B,MAAM,CAAC,CAAC,EAAE,CAAC,IAAI,GAAC,EAAE,CAAC,IAAI,CAAC,CAAC;IAExB,0GAA0G;IAC1G,kCAAkC;AACtC,CAAC;AAGD,aAAa,CAAC,EAAC,IAAI,EAAC,EAAE,EAAC,CAAC,CAAC,CAAC,QAAQ;AAClC,aAAa,CAAC,EAAC,IAAI,EAAC,EAAE,EAAE,KAAK,EAAC,KAAK,EAAC,CAAC,CAAC,CAAC,QAAQ;AAC/C,sFAAsF"}

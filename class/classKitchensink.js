@@ -11,7 +11,7 @@ var Human = (function () {
         console.log("walking"); // this function can be put into abstract clss because every human walks in the same way
     };
     return Human;
-})();
+}());
 var Employee = (function (_super) {
     __extends(Employee, _super);
     function Employee(company) {
@@ -23,10 +23,10 @@ var Employee = (function (_super) {
         console.log('painting'); // had to implement this function
     };
     return Employee;
-})(Human);
+}(Human));
 // var  aHuman = new Human(); //  cannot instantiate an abstract class
 Human.population = 0;
 var anEmployee = new Employee('Ernst & Young');
 var anEmployee1 = new Employee('EY');
 console.log(Human.population);
-//# sourceMappingURL=abstractClass.js.map
+//# sourceMappingURL=classKitchensink.js.map

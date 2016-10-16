@@ -6,6 +6,6 @@ var Vehicle = (function () {
     Vehicle.prototype.fly = function () { };
     ;
     return Vehicle;
-})();
+}());
 // Vehicle needs to have properties specified in the IFlyable
 //# sourceMappingURL=class-interface.js.map
