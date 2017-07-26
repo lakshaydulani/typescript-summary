@@ -93,7 +93,7 @@ For variables, a void type variable can only be null or undefined.
 
 ``` let unusable: void = undefined; ```
 
-###Union of Types
+### Union of Types
 
 There are situations in which a function can accept a parameter which can be of different type of data type.
 Using Union, you can set a restriction for a function to accept a parameter of given range of data types.
@@ -141,7 +141,7 @@ class Vehicle implements IFlyable{
 // Properties suffixed with ? are optional
 ```
 
-###Interface for functions
+### Interface for functions
 
 ```
 interface SearchFunc {
@@ -207,13 +207,13 @@ TS classes have public, private and protected members. Members are public by def
 Classes can also be defined as Abstract classes and they can have Static properties.
 Derived classes need to call the ```super``` function to execute the constructor of the base class.
 
-####Key points####
+#### Key points ####
 
 **Abstract classes** - These are meant to be inherited, but cannot be instantiated.
 **Static properties** - These properties describe the class not the instances of it. See the property population in the Class kitchensink code.
 
 
-###TS Class Kitchensink code###
+### TS Class Kitchensink code ###
 
 Lets see the example below:
 
